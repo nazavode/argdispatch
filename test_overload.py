@@ -15,25 +15,23 @@
 # limitations under the License.
 
 from overload import overload
+import abc
 
-if __name__ == '__main__':
-    import abc
+
+def test_overload():
 
     @overload('b')
     def foo(a, b, c):
         pass
 
-
     @foo.register(int)
     def foo_int(a, b, c):
         pass
-
 
     class BaseVisitor(metaclass=abc.ABCMeta):
         @abc.abstractmethod
         def visit(self, obj):
             pass
-
 
     class TestVisitor(BaseVisitor):
         @overload('obj')
@@ -60,4 +58,3 @@ if __name__ == '__main__':
     test.visit(1.0)
     test.visit("CIAO")
 
-    print(test.visit.__doc__)

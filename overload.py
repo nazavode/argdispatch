@@ -29,10 +29,16 @@ __version__ = '0.1.0'
 
 
 def overload(argument=None):
+    """
+
+    :param argument:
+    :return:
+    """
     # Define dispatch argument:
     dispatch_arg_name = argument
 
     def dispatch_decorator(func):
+        """Dispatch closure decorator."""
         # Apply std decorator:
         dispatcher = functools.singledispatch(func)
         # Cache wrapped signature:
@@ -42,6 +48,7 @@ def overload(argument=None):
             raise ValueError('unknown dispatch argument specified')
 
         def wrapper(*args, **kwargs):
+            """Dispatch function wrapper."""
             if dispatch_arg_name is None:
                 discriminator = args[0].__class__  # mimic functools.singledispatch behaviour
             else:
@@ -53,21 +60,25 @@ def overload(argument=None):
             return dispatcher.dispatch(discriminator)(*args, **kwargs)
 
         def register(cls, reg_func=None):
-            # Ensures that situations like the following never happen:
-            #
-            #     @argdispatch('c')
-            #     def test(a, obj, b=None, c=None):
-            #         pass
-            #
-            #     @test.register(int)
-            #     def _(a, obj):
-            #         pass
-            #
-            #     test(1, 2)  ----> TypeError
+            """ Registration method replacement.
+
+            Ensures that situations like the following never happen:
+
+                >>> @overload('c')
+                >>> def test(a, obj, b=None, c=None):
+                >>>    pass
+                >>>
+                >>> @test.register(int)
+                >>> def _(a, obj):
+                >>>    pass
+                >>>
+                >>> test(1, 2) # ----> TypeError
+
+            """
             if reg_func is not None:
                 # Check signature match:
                 reg_sig = inspect.signature(reg_func)
-                if not reg_sig == wrapped_signature:
+                if reg_sig != wrapped_signature:
                     raise TypeError('registered method signature mismatch')
             return dispatcher.register(cls, reg_func)
 
