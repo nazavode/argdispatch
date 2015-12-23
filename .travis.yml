@@ -8,6 +8,8 @@ python:
 install:
   - "pip3 install pytest"
   - "pip3 install pytest-cov"
+  - "pip3 install pytest-sugar"
+  - "pip3 install pytest-capturelog"
   - "pip3 install coveralls"
   - "pip3 install ."
 

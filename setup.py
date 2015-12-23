@@ -28,18 +28,18 @@ if __name__ == "__main__":
     try:
         py_dirname = DIRNAME
         sys.path.insert(0, py_dirname)
-    
+
         import overload
         version = overload.__version__
     finally:
         del sys.path[0]
-    
+
     # search executables
     scripts = []
     for filepath in glob.glob('bin/*'):
         if os.path.isfile(filepath) and os.access(filepath, os.X_OK):
             scripts.append(filepath)
-    
+
     # search packages
     root_packages = []
     packages = []
@@ -76,7 +76,7 @@ if __name__ == "__main__":
             'License :: OSI Approved :: Apache Software License',
             # language:
             'Programming Language :: Python :: 3.4',
-            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.5',
         ],
         keywords='overload singledispatch type dispatch visitor pattern',
     )

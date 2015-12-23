@@ -1,3 +1,0 @@
-include tox.ini
-include pylint.ini
-include flake8.ini
