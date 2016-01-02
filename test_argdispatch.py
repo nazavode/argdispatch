@@ -65,7 +65,7 @@ def test_trivial(funarg):
     function = funarg[0]
     argument = funarg[1]
     dsp_function = argdispatch(argument)(function)
-    reg_function = dsp_function.register(str)(function)
+    reg_function = dsp_function.register(DISPATCHED.__class__)(function)
     kwargs = {argument: DISPATCHED}
     res = reg_function(**kwargs)
     for arg, value in res.items():
