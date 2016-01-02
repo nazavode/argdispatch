@@ -29,10 +29,19 @@ __version__ = '0.1.0'
 
 
 def argdispatch(argument=None):
-    """
+    """ Type dispatch decorator that allows dispatching on a custom argument.
 
-    :param argument:
-    :return:
+    Parameters
+    ----------
+    argument : str
+        The symbolic name of the argument to be considered for type dispatching.
+        Defaults to ``None``. When ``None``, the decorator acts exactly like the
+        standard ``functools.singledispatch``.
+
+    Returns
+    -------
+    callable
+        The dispatch closure.
     """
     # Define dispatch argument:
     dispatch_arg_name = argument
@@ -44,7 +53,8 @@ def argdispatch(argument=None):
         # Cache wrapped signature:
         wrapped_signature = inspect.signature(func)
         # Check argument correctness
-        if dispatch_arg_name is not None and dispatch_arg_name not in wrapped_signature.parameters:
+        if dispatch_arg_name is not None and \
+                dispatch_arg_name not in wrapped_signature.parameters:
             raise ValueError('unknown dispatch argument specified')
 
         def wrapper(*args, **kwargs):
@@ -65,12 +75,12 @@ def argdispatch(argument=None):
             Ensures that situations like the following never happen:
 
                 >>> @argdispatch('c')
-                >>> def test(a, obj, b=None, c=None):
-                >>>    pass
-                >>>
+                ... def test(a, obj, b=None, c=None):
+                ...    pass
+                ...
                 >>> @test.register(int)
-                >>> def _(a, obj):
-                >>>    pass
+                ... def _(a, obj):
+                ...    pass
                 >>>
                 >>> test(1, 2) # ----> TypeError
 
