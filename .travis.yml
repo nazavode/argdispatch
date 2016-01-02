@@ -16,7 +16,7 @@ install:
 
 # command to run tests
 script:
-  - coverage run --source overload `which py.test`
+  - coverage run --source argdispatch `which py.test`
 
 after_success:
   - coveralls --rcfile=.coveragerc
@@ -25,7 +25,7 @@ after_success:
 notifications:
   email:
     recipients:
-      - toroidh@gmail.com
+      - federico.ficarelli@gmail.com
     on_success: change
     on_failure: always
 

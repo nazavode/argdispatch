@@ -28,7 +28,7 @@ __license__ = 'Apache License Version 2.0'
 __version__ = '0.1.0'
 
 
-def overload(argument=None):
+def argdispatch(argument=None):
     """
 
     :param argument:
@@ -64,7 +64,7 @@ def overload(argument=None):
 
             Ensures that situations like the following never happen:
 
-                >>> @overload('c')
+                >>> @argdispatch('c')
                 >>> def test(a, obj, b=None, c=None):
                 >>>    pass
                 >>>

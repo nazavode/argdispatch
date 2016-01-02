@@ -29,8 +29,8 @@ if __name__ == "__main__":
         py_dirname = DIRNAME
         sys.path.insert(0, py_dirname)
 
-        import overload
-        version = overload.__version__
+        import argdispatch
+        version = argdispatch.__version__
     finally:
         del sys.path[0]
 
@@ -51,7 +51,7 @@ if __name__ == "__main__":
                 packages.append(os.path.normpath(rdirpath).replace(os.sep, '.'))
 
     setup(
-        name="python-overload",
+        name="argdispatch",
         version=version,
         requires=[],
         description="Improved type dispatch decorator for Python.",
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         url="https://nazavode.github.io",
         packages=packages,
         scripts=scripts,
-        py_modules=['overload'],
+        py_modules=['argdispatch'],
         classifiers=[
             # status:
             #   3 - Alpha
@@ -78,5 +78,5 @@ if __name__ == "__main__":
             'Programming Language :: Python :: 3.4',
             'Programming Language :: Python :: 3.5',
         ],
-        keywords='overload singledispatch type dispatch visitor pattern',
+        keywords='overload argdispatch singledispatch type dispatch visitor pattern',
     )

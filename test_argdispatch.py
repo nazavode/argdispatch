@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from overload import overload
+from argdispatch import argdispatch
 import abc
 
 
-def test_overload():
+def test_argdispatch():
 
-    @overload('b')
+    @argdispatch('b')
     def foo(a, b, c):
         pass
 
@@ -34,7 +34,7 @@ def test_overload():
             pass
 
     class TestVisitor(BaseVisitor):
-        @overload('obj')
+        @argdispatch('obj')
         def visit(self, obj):
             """VISIT DOC"""
             print('METH object')
