@@ -4,7 +4,7 @@ Argdispatch
 
 Improved type dispatch decorator for Python.
 
-*Overload requires Python version 3.4 or greater.*
+*Argdispatch requires Python version 3.4 or greater.*
 
 
 |build-status| |coverage-status| |license-status|
