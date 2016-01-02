@@ -1,6 +1,6 @@
-========
-Overload
-========
+===========
+Argdispatch
+===========
 
 Improved type dispatch decorator for Python.
 
@@ -9,12 +9,12 @@ Improved type dispatch decorator for Python.
 
 |build-status| |coverage-status| |license-status|
 
-.. |build-status| image:: https://travis-ci.org/nazavode/overload.svg?branch=master
-    :target: https://travis-ci.org/nazavode/overload
+.. |build-status| image:: https://travis-ci.org/nazavode/argdispatch.svg?branch=master
+    :target: https://travis-ci.org/nazavode/argdispatch
     :alt: Build status
 
-.. |coverage-status| image:: https://coveralls.io/repos/nazavode/overload/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/nazavode/overload?branch=master
+.. |coverage-status| image:: https://coveralls.io/repos/nazavode/argdispatch/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/nazavode/argdispatch?branch=master
     :alt: Coverage report
 
 .. |license-status| image:: https://img.shields.io/badge/license-Apache2.0-blue.svg
