@@ -27,16 +27,20 @@ from argdispatch import argdispatch
 DISPATCHED = 'DISPATCHED'
 
 
-def fun_1(a=0, b=1, c=2, d=3, e=4, f=5, g=6):
-    return {'a': a, 'b': b, 'c': c, 'd': d, 'e': e, 'f': f, 'g': g}
+def fun_1(a=0):
+    return {'a': a}
 
 
-def fun_2(a=0, b=1, c=2, d=3, e=4, f=5, g=6):
-    return {'a': a, 'b': b, 'c': c, 'd': d, 'e': e, 'f': f, 'g': g}
+def fun_2(a=0, b=1):
+    return {'a': a, 'b': b}
 
 
-def fun_3(a=0, b=1, c=2, d=3, e=4, f=5, g=6):
-    return {'a': a, 'b': b, 'c': c, 'd': d, 'e': e, 'f': f, 'g': g}
+def fun_3(a=0, b=1, c=2):
+    return {'a': a, 'b': b, 'c': c}
+
+
+def fun_8(a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7):
+    return {'a': a, 'b': b, 'c': c, 'd': d, 'e': e, 'f': f, 'g': g, 'h': h}
 
 ###############################################################################
 # Fixtures
@@ -45,6 +49,7 @@ functions = (
     fun_1,
     fun_2,
     fun_3,
+    fun_8,
 )
 
 
@@ -73,6 +78,16 @@ def test_trivial(funarg):
             assert value == DISPATCHED
         else:
             assert value != DISPATCHED
+
+
+def test_mismatch(funarg):
+    function = funarg[0]
+    argument = funarg[1]
+    dsp_function = argdispatch(argument)(function)
+
+    @dsp_function.register(int)
+    def _(newarg, funarg):
+        assert False
 
 
 def test_boundmethod():
